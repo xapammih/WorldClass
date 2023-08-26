@@ -1,5 +1,7 @@
 import customtkinter
 from Application import MainWindow, Data
+import datetime
+
 
 data = Data()
 app_window = MainWindow(data)
