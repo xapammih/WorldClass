@@ -1,22 +1,25 @@
 import customtkinter
-from Application import MainWindow
+from Application import MainWindow, Data
 
+data = Data()
+app_window = MainWindow(data)
 
-app_window = MainWindow()
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 
 
-def render():
+def main():
     app_window.personal_info()
+    app_window.doctor_info()
     app_window.step_1()
     app_window.step_2()
     app_window.step_3()
-
-
-if __name__ == '__main__':
-    render()
+    app_window.step_4()
+    app_window.save_document()
+    app_window.print_document()
     app_window.app.mainloop()
 
 
+if __name__ == '__main__':
+    main()
 
