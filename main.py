@@ -1,7 +1,5 @@
 import customtkinter
 from Application import MainWindow, Data
-import datetime
-
 
 data = Data()
 app_window = MainWindow(data)
@@ -13,6 +11,7 @@ customtkinter.set_default_color_theme("blue")
 def main():
     app_window.personal_info()
     app_window.doctor_info()
+    app_window.wanted_result()
     app_window.step_1()
     app_window.step_2()
     app_window.step_3()
