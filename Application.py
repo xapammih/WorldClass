@@ -1,13 +1,16 @@
+import functools
+
 import customtkinter
 import datetime
 from tkinter.filedialog import asksaveasfilename
+import pandas as pd
 
 
 class Data:
 
     def __init__(self):
-        self.phone = ''
         self.fio = ''
+        self.phone = ''
         self.doctor = ''
         self.wanted_result = ''
         self.current_date = ''
@@ -65,6 +68,9 @@ class Data:
         self.step_3_commentary = ''
 
         self.step_4_commentary = ''
+
+    def get_init_attributes(self):
+        return list(vars(self).values())
 
 
 class MainWindow:
@@ -572,22 +578,25 @@ class MainWindow:
         step4_confirmation_button.grid(row=16, column=6, padx=20, pady=20)
 
     def save_document_callback(self):
+        df.drop_duplicates()
+        logging()
         save_path_name = asksaveasfilename(initialfile='Untitled.pdf', defaultextension=".pdf",
                                            filetypes=[("All Files", "*.*"), ("PDF documents", "*.pdf")])
 
     def save_document(self):
-        self.current_date = datetime.date.today().strftime('%d-%m-%Y')
-        self.current_time = datetime.datetime.now().strftime("%H:%M")
+        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
+        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
                                                             command=self.save_document_callback)
         step4_confirmation_button.grid(row=17, column=8, padx=20, pady=20)
 
     def print_document_callback(self):
-        pass
+        df.drop_duplicates()
+        logging()
 
     def print_document(self):
-        self.current_date = datetime.date.today().strftime('%d-%m-%Y')
-        self.current_time = datetime.datetime.now().strftime("%H:%M")
+        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
+        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Распечатать',
                                                             command=self.print_document_callback)
         step4_confirmation_button.grid(row=17, column=9, padx=20, pady=20)
@@ -713,3 +722,14 @@ class MainWindow:
 
     def insert_logo(self):
         pass
+
+
+df = pd.read_excel('log.xlsx')
+data = Data()
+app_window = MainWindow(data)
+
+
+def logging():
+    cur_data = data.get_init_attributes()
+    df.loc[len(df.index)] = cur_data
+    df.to_excel('log.xlsx', index=False)

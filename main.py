@@ -1,8 +1,5 @@
 import customtkinter
-from Application import MainWindow, Data
-
-data = Data()
-app_window = MainWindow(data)
+from Application import app_window
 
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
