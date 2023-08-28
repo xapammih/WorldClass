@@ -1,5 +1,3 @@
-import functools
-
 import customtkinter
 import datetime
 from tkinter.filedialog import asksaveasfilename
@@ -454,34 +452,34 @@ class MainWindow:
         self.data.step_3_procedure_5 = choise
 
     def step_3_procedures_count_1_callback(self, choise):
-        self.data.step_3_procedures_count_1 = choise
+        self.data.step_3_count_procedures_1 = choise
 
     def step_3_procedures_count_2_callback(self, choise):
-        self.data.step_3_procedures_count_2 = choise
+        self.data.step_3_count_procedures_2 = choise
 
     def step_3_procedures_count_3_callback(self, choise):
-        self.data.step_3_procedures_count_3 = choise
+        self.data.step_3_count_procedures_3 = choise
 
     def step_3_procedures_count_4_callback(self, choise):
-        self.data.step_3_procedures_count_4 = choise
+        self.data.step_3_count_procedures_4 = choise
 
     def step_3_procedures_count_5_callback(self, choise):
-        self.data.step_3_procedures_count_5 = choise
+        self.data.step_3_count_procedures_5 = choise
 
     def step_3_period_1_callback(self, choise):
         self.data.step_3_procedure_period_1 = choise
 
     def step_3_period_2_callback(self, choise):
-        self.data.step_3_procedure_period_1 = choise
-
-    def step_3_period_3_callback(self, choise):
         self.data.step_3_procedure_period_2 = choise
 
-    def step_3_period_4_callback(self, choise):
+    def step_3_period_3_callback(self, choise):
         self.data.step_3_procedure_period_3 = choise
 
-    def step_3_period_5_callback(self, choise):
+    def step_3_period_4_callback(self, choise):
         self.data.step_3_procedure_period_4 = choise
+
+    def step_3_period_5_callback(self, choise):
+        self.data.step_3_procedure_period_5 = choise
 
     def step3_confirmation_button_callback(self):
         self.data.step_3_commentary = self.step_3_commentary.get("0.0", "end")
@@ -578,25 +576,25 @@ class MainWindow:
         step4_confirmation_button.grid(row=16, column=6, padx=20, pady=20)
 
     def save_document_callback(self):
-        df.drop_duplicates()
+        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
+        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
+        df.drop_duplicates(inplace=True)
         logging()
-        save_path_name = asksaveasfilename(initialfile='Untitled.pdf', defaultextension=".pdf",
+        save_path_name = asksaveasfilename(initialfile=f'{self.data.fio}.pdf', defaultextension=".pdf",
                                            filetypes=[("All Files", "*.*"), ("PDF documents", "*.pdf")])
 
     def save_document(self):
-        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
-        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
                                                             command=self.save_document_callback)
         step4_confirmation_button.grid(row=17, column=8, padx=20, pady=20)
 
     def print_document_callback(self):
-        df.drop_duplicates()
+        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
+        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
+        df.drop_duplicates(inplace=True)
         logging()
 
     def print_document(self):
-        self.data.current_date = datetime.date.today().strftime('%d-%m-%Y')
-        self.data.current_time = datetime.datetime.now().strftime("%H:%M")
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Распечатать',
                                                             command=self.print_document_callback)
         step4_confirmation_button.grid(row=17, column=9, padx=20, pady=20)
