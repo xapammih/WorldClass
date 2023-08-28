@@ -18,6 +18,7 @@ def main():
     app_window.step_4()
     app_window.save_document()
     app_window.print_document()
+    app_window.clear_all()
     app_window.app.mainloop()
 
 
