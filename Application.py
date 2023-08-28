@@ -1,6 +1,9 @@
 import customtkinter
 import datetime
 from tkinter.filedialog import asksaveasfilename
+from blank_manager import BlankManager
+from pdf_generator import PdfGenerator
+from printer import LazyPrinter
 
 
 class Data:
@@ -67,9 +70,10 @@ class MainWindow:
 
     def __init__(self, data):
         self.app = customtkinter.CTk()
-        self.app.title = 'World Class'
+        self.app.title('World Class')
         self.app.grid_columnconfigure(0, weight=1)
         self.data = data
+        self.blank_manager = BlankManager(PdfGenerator, data, LazyPrinter)
 
     def personal_info_callback(self):
         self.data.name = self.name_entry.get()
@@ -499,6 +503,7 @@ class MainWindow:
     def save_document_callback(self):
         save_path_name = asksaveasfilename(initialfile='Untitled.pdf', defaultextension=".pdf",
                                            filetypes=[("All Files", "*.*"), ("PDF documents", "*.pdf")])
+        self.blank_manager.save_pdf(save_path_name)
 
     def save_document(self):
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
@@ -506,7 +511,7 @@ class MainWindow:
         step4_confirmation_button.grid(row=17, column=8, padx=20, pady=20)
 
     def print_document_callback(self):
-        pass
+        self.blank_manager.print_pdf()
 
     def print_document(self):
         step4_confirmation_button = customtkinter.CTkButton(master=self.app, text='Распечатать',
