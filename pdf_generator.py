@@ -27,8 +27,8 @@ class PdfGenerator:
     def get_data(self):
         return self.data_handler.__dict__
 
-    def load_bg(self, patterns):
-        return self.patterns.get('pattern').get('bg')
+    def load_bg(self, pattern):
+        return self.patterns.get(pattern).get('bg')
 
     def load_options(self, pattern):
         return self.patterns.get(pattern).get('options')
@@ -45,8 +45,9 @@ class PdfGenerator:
             packet = io.BytesIO()
             can = canvas.Canvas(packet, pagesize=A4)
             for form, text in inputs.items():
-                form_opts = options[form]
-                self.add_item_on_page(can, form_opts, text)
+                if text and form in options:
+                    form_opts = options[form]
+                    self.add_item_on_page(can, form_opts, text)
             can.save()
             packet.seek(0)
 

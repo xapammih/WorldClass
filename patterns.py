@@ -1,13 +1,13 @@
 def generate_v1(patterns):
     options = {
-        'date': {
+        'current_date': {
             'max_len': 10,
             'position': (368.7, 731),
             'align': 'centred',
             'fontsize': 9
         },
 
-        'time': {
+        'current_time': {
             'max_len': 10,
             'position': (450.4, 731),
             'align': 'centred',
@@ -21,6 +21,20 @@ def generate_v1(patterns):
             'fontsize': 11
         },
 
+        'surname': {
+            'max_len': 10,
+            'position': (67, 717.5),
+            'align': 'left',
+            'fontsize': 11
+        },
+
+        'fathername': {
+            'max_len': 10,
+            'position': (67, 717.5),
+            'align': 'left',
+            'fontsize': 11
+        },
+
         'doctor': {
             'max_len': 10,
             'position': (67, 36),
@@ -28,7 +42,7 @@ def generate_v1(patterns):
             'fontsize': 10
         },
 
-        'phone_number': {
+        'phone': {
             'max_len': 10,
             'position': (87, 704.1),
             'align': 'left',
@@ -71,7 +85,7 @@ def generate_v1(patterns):
         )
 
         step.update({
-            f'step{i + 1}_comment': {'max_len': 10,
+            f'step_{i + 1}_commentary': {'max_len': 10,
                                      'position': (x, y - 92.7),
                                      'align': 'left'}
         })
