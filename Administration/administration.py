@@ -54,11 +54,18 @@ class AdminPanel:
                                                             command=self.period_callback)
         periods_button.grid(row=5, column=0, padx=20, pady=20)
 
+    def clear_all_callback(self):
+        pass
+
+    def clear_all(self) -> None:
+        clear_all_button = customtkinter.CTkButton(master=self.admin_app, text='Очистить все',
+                                                   command=self.clear_all_callback)
+        clear_all_button.grid(row=16, column=9, padx=20, pady=0)
 
 def admin():
     admin_app = AdminPanel()
     admin_app.admin_app.title('Admin panel')
-    admin_app.admin_app.geometry('1000x1000')
+    admin_app.admin_app.geometry('1000x800')
     admin_app.doctor_info()
     admin_app.procedures()
     admin_app.period()
