@@ -213,65 +213,69 @@ class MainWindow:
         self.step_3_commentary = None
         self.step_4_commentary = None
 
-        #получаем все значения для выпадающих полей из текстовых файлов, генерирующихся в админке
-        with open('Administration/procedures.txt', 'r') as procedures_file:
-            self.procedures_list = [i for i in procedures_file.readlines()]
-        self.procedures_list_1_values_step_1 = self.procedures_list[:]
-        self.procedures_list_1_values_step_1.insert(0, 'Консультации')
-        self.procedures_list_2_values_step_1 = self.procedures_list[:]
-        self.procedures_list_2_values_step_1.insert(0, 'Диагностика')
-        self.procedures_list_3_values_step_1 = self.procedures_list[:]
-        self.procedures_list_3_values_step_1.insert(0, 'Лицо ап.косм')
-        self.procedures_list_4_values_step_1 = self.procedures_list[:]
-        self.procedures_list_4_values_step_1.insert(0, 'Тело ап.косм')
-        self.procedures_list_5_values_step_1 = self.procedures_list[:]
-        self.procedures_list_5_values_step_1.insert(0, 'Лицо инъекции')
-        self.procedures_list_6_values_step_1 = self.procedures_list[:]
-        self.procedures_list_6_values_step_1.insert(0, 'Тело инъекции')
-        self.procedures_list_7_values_step_1 = self.procedures_list[:]
-        self.procedures_list_7_values_step_1.insert(0, 'Лицо эстетика')
-        self.procedures_list_8_values_step_1 = self.procedures_list[:]
-        self.procedures_list_8_values_step_1.insert(0, 'Тело эстетика')
-        self.procedures_list_9_values_step_1 = self.procedures_list[:]
-        self.procedures_list_9_values_step_1.insert(0, 'СПА услуги')
+        # получаем все значения для выпадающих полей из текстовых файлов, генерирующихся в админке
+        try:
+            with open('Administration/procedure_1.txt', 'r') as procedures_file_1:
+                self.procedures_list_1_values = [i for i in procedures_file_1.readlines()]
+                self.procedures_list_1_values.insert(0, 'Консультации')
+        except FileNotFoundError:
+            self.procedures_list_1_values = ['Консультации']
 
-        self.procedures_list_1_values_step_2 = self.procedures_list[:]
-        self.procedures_list_1_values_step_2.insert(0, 'Консультации')
-        self.procedures_list_2_values_step_2 = self.procedures_list[:]
-        self.procedures_list_2_values_step_2.insert(0, 'Диагностика')
-        self.procedures_list_3_values_step_2 = self.procedures_list[:]
-        self.procedures_list_3_values_step_2.insert(0, 'Лицо ап.косм')
-        self.procedures_list_4_values_step_2 = self.procedures_list[:]
-        self.procedures_list_4_values_step_2.insert(0, 'Тело ап.косм')
-        self.procedures_list_5_values_step_2 = self.procedures_list[:]
-        self.procedures_list_5_values_step_2.insert(0, 'Лицо инъекции')
-        self.procedures_list_6_values_step_2 = self.procedures_list[:]
-        self.procedures_list_6_values_step_2.insert(0, 'Тело инъекции')
-        self.procedures_list_7_values_step_2 = self.procedures_list[:]
-        self.procedures_list_7_values_step_2.insert(0, 'Лицо эстетика')
-        self.procedures_list_8_values_step_2 = self.procedures_list[:]
-        self.procedures_list_8_values_step_2.insert(0, 'Тело эстетика')
-        self.procedures_list_9_values_step_2 = self.procedures_list[:]
-        self.procedures_list_9_values_step_2.insert(0, 'СПА услуги')
+        try:
+            with open('Administration/procedure_2.txt', 'r') as procedures_file_2:
+                self.procedures_list_2_values = [i for i in procedures_file_2.readlines()]
+                self.procedures_list_2_values.insert(0, 'Диагностика')
+        except FileNotFoundError:
+            self.procedures_list_2_values = ['Диагностика']
 
-        self.procedures_list_1_values_step_3 = self.procedures_list[:]
-        self.procedures_list_1_values_step_3.insert(0, 'Консультации')
-        self.procedures_list_2_values_step_3 = self.procedures_list[:]
-        self.procedures_list_2_values_step_3.insert(0, 'Диагностика')
-        self.procedures_list_3_values_step_3 = self.procedures_list[:]
-        self.procedures_list_3_values_step_3.insert(0, 'Лицо ап.косм')
-        self.procedures_list_4_values_step_3 = self.procedures_list[:]
-        self.procedures_list_4_values_step_3.insert(0, 'Тело ап.косм')
-        self.procedures_list_5_values_step_3 = self.procedures_list[:]
-        self.procedures_list_5_values_step_3.insert(0, 'Лицо инъекции')
-        self.procedures_list_6_values_step_3 = self.procedures_list[:]
-        self.procedures_list_6_values_step_3.insert(0, 'Тело инъекции')
-        self.procedures_list_7_values_step_3 = self.procedures_list[:]
-        self.procedures_list_7_values_step_3.insert(0, 'Лицо эстетика')
-        self.procedures_list_8_values_step_3 = self.procedures_list[:]
-        self.procedures_list_8_values_step_3.insert(0, 'Тело эстетика')
-        self.procedures_list_9_values_step_3 = self.procedures_list[:]
-        self.procedures_list_9_values_step_3.insert(0, 'СПА услуги')
+        try:
+            with open('Administration/procedure_3.txt', 'r') as procedures_file_3:
+                self.procedures_list_3_values = [i for i in procedures_file_3.readlines()]
+                self.procedures_list_3_values.insert(0, 'Лицо ап.косм')
+        except FileNotFoundError:
+            self.procedures_list_3_values = ['Лицо ап.косм']
+
+        try:
+            with open('Administration/procedure_4.txt', 'r') as procedures_file_4:
+                self.procedures_list_4_values = [i for i in procedures_file_4.readlines()]
+                self.procedures_list_4_values.insert(0, 'Тело ап.косм')
+        except FileNotFoundError:
+            self.procedures_list_4_values = ['Тело ап.косм']
+
+        try:
+            with open('Administration/procedure_5.txt', 'r') as procedures_file_5:
+                self.procedures_list_5_values = [i for i in procedures_file_5.readlines()]
+                self.procedures_list_5_values.insert(0, 'Лицо инъекции')
+        except FileNotFoundError:
+            self.procedures_list_5_values = ['Лицо инъекции']
+
+        try:
+            with open('Administration/procedure_6.txt', 'r') as procedures_file_6:
+                self.procedures_list_6_values = [i for i in procedures_file_6.readlines()]
+                self.procedures_list_6_values.insert(0, 'Тело инъекции')
+        except FileNotFoundError:
+            self.procedures_list_6_values = ['Тело инъекции']
+
+        try:
+            with open('Administration/procedure_7.txt', 'r') as procedures_file_7:
+                self.procedures_list_7_values = [i for i in procedures_file_7.readlines()]
+                self.procedures_list_7_values.insert(0, 'Лицо эстетика')
+        except FileNotFoundError:
+            self.procedures_list_7_values = ['Лицо эстетика']
+
+        try:
+            with open('Administration/procedure_8.txt', 'r') as procedures_file_8:
+                self.procedures_list_8_values = [i for i in procedures_file_8.readlines()]
+                self.procedures_list_8_values.insert(0, 'Тело эстетика')
+        except FileNotFoundError:
+            self.procedures_list_8_values = ['Тело эстетика']
+
+        try:
+            with open('Administration/procedure_9.txt', 'r') as procedures_file_9:
+                self.procedures_list_9_values = [i for i in procedures_file_9.readlines()]
+                self.procedures_list_9_values.insert(0, 'СПА услуги')
+        except FileNotFoundError:
+            self.procedures_list_8_values = ['СПА услуги']
 
         self.procedure_count_lst = [str(i) for i in range(1, 21)]
         self.procedure_count_lst.insert(0, '')
@@ -319,7 +323,7 @@ class MainWindow:
                                                           placeholder_text="Желаемый результат: ")
         self.wanted_result_entry.grid(row=2, column=0, padx=30, pady=20, columnspan=3, sticky="nsew")
 
-    #колбэки для шага 1
+    # колбэки для шага 1
     def step_1_combobox_callback_1(self, choise: str) -> None:
         self.data.step_1_procedure_1 = choise
 
@@ -410,39 +414,39 @@ class MainWindow:
                                               text='Шаг 1: ТОП решения и видимый результат')
         step_1_label.grid(row=3, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_1_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values_step_1,
+        self.step_1_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
                                                            command=self.step_1_combobox_callback_1)
         self.step_1_combobox_1.grid(row=4, column=0, padx=20, pady=0)
 
-        self.step_1_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values_step_1,
+        self.step_1_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
                                                            command=self.step_1_combobox_callback_2)
         self.step_1_combobox_2.grid(row=4, column=1, padx=20, pady=0)
 
-        self.step_1_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values_step_1,
+        self.step_1_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
                                                            command=self.step_1_combobox_callback_3)
         self.step_1_combobox_3.grid(row=4, column=2, padx=20, pady=0)
 
-        self.step_1_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values_step_1,
+        self.step_1_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
                                                            command=self.step_1_combobox_callback_4)
         self.step_1_combobox_4.grid(row=4, column=3, padx=20, pady=0)
 
-        self.step_1_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values_step_1,
+        self.step_1_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
                                                            command=self.step_1_combobox_callback_5)
         self.step_1_combobox_5.grid(row=4, column=4, padx=20, pady=0)
 
-        self.step_1_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values_step_1,
+        self.step_1_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
                                                            command=self.step_1_combobox_callback_6)
         self.step_1_combobox_6.grid(row=4, column=5, padx=20, pady=0)
 
-        self.step_1_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values_step_1,
+        self.step_1_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
                                                            command=self.step_1_combobox_callback_7)
         self.step_1_combobox_7.grid(row=4, column=6, padx=20, pady=0)
 
-        self.step_1_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values_step_1,
+        self.step_1_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
                                                            command=self.step_1_combobox_callback_8)
         self.step_1_combobox_8.grid(row=4, column=7, padx=20, pady=0)
 
-        self.step_1_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values_step_1,
+        self.step_1_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
                                                            command=self.step_1_combobox_callback_9)
         self.step_1_combobox_9.grid(row=4, column=8, padx=20, pady=0)
 
@@ -530,7 +534,7 @@ class MainWindow:
         self.step_1_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
         self.step_1_commentary.grid(row=4, column=9, padx=20, pady=0, rowspan=5)
 
-    #колбэки для шага 2
+    # колбэки для шага 2
     def step_2_combobox_callback_1(self, choise: str) -> None:
         self.data.step_2_procedure_1 = choise
 
@@ -618,42 +622,42 @@ class MainWindow:
         :return:
         """
         step_2_label = customtkinter.CTkLabel(master=self.app, font=('Arial', 16),
-                                              text='Шаг 2: Улучшение и закрепление')
+                                              text='Шаг 2: Улучшение и закрепление результата')
         step_2_label.grid(row=9, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_2_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values_step_2,
+        self.step_2_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
                                                            command=self.step_2_combobox_callback_1)
         self.step_2_combobox_1.grid(row=10, column=0, padx=20, pady=0)
 
-        self.step_2_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values_step_2,
+        self.step_2_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
                                                            command=self.step_2_combobox_callback_2)
         self.step_2_combobox_2.grid(row=10, column=1, padx=20, pady=0)
 
-        self.step_2_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values_step_2,
+        self.step_2_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
                                                            command=self.step_2_combobox_callback_3)
         self.step_2_combobox_3.grid(row=10, column=2, padx=20, pady=0)
 
-        self.step_2_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values_step_2,
+        self.step_2_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
                                                            command=self.step_2_combobox_callback_4)
         self.step_2_combobox_4.grid(row=10, column=3, padx=20, pady=0)
 
-        self.step_2_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values_step_2,
+        self.step_2_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
                                                            command=self.step_2_combobox_callback_5)
         self.step_2_combobox_5.grid(row=10, column=4, padx=20, pady=0)
 
-        self.step_2_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values_step_2,
+        self.step_2_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
                                                            command=self.step_2_combobox_callback_6)
         self.step_2_combobox_6.grid(row=10, column=5, padx=20, pady=0)
 
-        self.step_2_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values_step_2,
+        self.step_2_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
                                                            command=self.step_2_combobox_callback_7)
         self.step_2_combobox_7.grid(row=10, column=6, padx=20, pady=0)
 
-        self.step_2_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values_step_2,
+        self.step_2_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
                                                            command=self.step_2_combobox_callback_8)
         self.step_2_combobox_8.grid(row=10, column=7, padx=20, pady=0)
 
-        self.step_2_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values_step_2,
+        self.step_2_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
                                                            command=self.step_2_combobox_callback_9)
         self.step_2_combobox_9.grid(row=10, column=8, padx=20, pady=0)
 
@@ -740,7 +744,8 @@ class MainWindow:
         self.step_2_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
         self.step_2_commentary.grid(row=10, column=9, padx=20, pady=0, rowspan=5)
 
-    #колбэки для шага 3
+    # колбэки для шага 3
+
     def step_3_combobox_callback_1(self, choise: str) -> None:
         self.data.step_3_procedure_1 = choise
 
@@ -831,39 +836,39 @@ class MainWindow:
                                               text='Шаг 3: Поддержка и совершенствование')
         step_3_label.grid(row=15, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_3_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values_step_3,
+        self.step_3_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
                                                            command=self.step_3_combobox_callback_1)
         self.step_3_combobox_1.grid(row=16, column=0, padx=20, pady=0)
 
-        self.step_3_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values_step_3,
+        self.step_3_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
                                                            command=self.step_3_combobox_callback_2)
         self.step_3_combobox_2.grid(row=16, column=1, padx=20, pady=0)
 
-        self.step_3_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values_step_3,
+        self.step_3_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
                                                            command=self.step_3_combobox_callback_3)
         self.step_3_combobox_3.grid(row=16, column=2, padx=20, pady=0)
 
-        self.step_3_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values_step_3,
+        self.step_3_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
                                                            command=self.step_3_combobox_callback_4)
         self.step_3_combobox_4.grid(row=16, column=3, padx=20, pady=0)
 
-        self.step_3_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values_step_3,
+        self.step_3_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
                                                            command=self.step_3_combobox_callback_5)
         self.step_3_combobox_5.grid(row=16, column=4, padx=20, pady=0)
 
-        self.step_3_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values_step_3,
+        self.step_3_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
                                                            command=self.step_3_combobox_callback_6)
         self.step_3_combobox_6.grid(row=16, column=5, padx=20, pady=0)
 
-        self.step_3_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values_step_3,
+        self.step_3_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
                                                            command=self.step_3_combobox_callback_7)
         self.step_3_combobox_7.grid(row=16, column=6, padx=20, pady=0)
 
-        self.step_3_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values_step_3,
+        self.step_3_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
                                                            command=self.step_3_combobox_callback_8)
         self.step_3_combobox_8.grid(row=16, column=7, padx=20, pady=0)
 
-        self.step_3_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values_step_3,
+        self.step_3_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
                                                            command=self.step_3_combobox_callback_9)
         self.step_3_combobox_9.grid(row=16, column=8, padx=20, pady=0)
 
@@ -979,7 +984,7 @@ class MainWindow:
 
     def save_document(self) -> None:
         save_document_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
-                                                            command=self.save_document_callback)
+                                                       command=self.save_document_callback)
         save_document_button.grid(row=0, column=8, padx=20, pady=0)
 
     def print_document_callback(self) -> None:
@@ -1001,7 +1006,7 @@ class MainWindow:
 
     def print_document(self) -> None:
         print_document_button = customtkinter.CTkButton(master=self.app, text='Распечатать',
-                                                            command=self.print_document_callback)
+                                                        command=self.print_document_callback)
         print_document_button.grid(row=0, column=9, padx=20, pady=0)
 
     def clear_all_callback(self) -> None:
@@ -1106,24 +1111,24 @@ class MainWindow:
         self.phone_entry.delete('0', customtkinter.END)
         self.wanted_result_entry.delete('0', customtkinter.END)
 
-        self.step_1_combobox_1.set(self.procedures_list[0])
-        self.step_1_combobox_2.set(self.procedures_list[0])
-        self.step_1_combobox_3.set(self.procedures_list[0])
-        self.step_1_combobox_4.set(self.procedures_list[0])
-        self.step_1_combobox_5.set(self.procedures_list[0])
-        self.step_1_combobox_6.set(self.procedures_list[0])
-        self.step_1_combobox_7.set(self.procedures_list[0])
-        self.step_1_combobox_8.set(self.procedures_list[0])
-        self.step_1_combobox_9.set(self.procedures_list[0])
-        self.step_1_count_procedures_1.set(1)
-        self.step_1_count_procedures_2.set(1)
-        self.step_1_count_procedures_3.set(1)
-        self.step_1_count_procedures_4.set(1)
-        self.step_1_count_procedures_5.set(1)
-        self.step_1_count_procedures_6.set(1)
-        self.step_1_count_procedures_7.set(1)
-        self.step_1_count_procedures_8.set(1)
-        self.step_1_count_procedures_9.set(1)
+        self.step_1_combobox_1.set(self.procedures_list_1_values[0])
+        self.step_1_combobox_2.set(self.procedures_list_2_values[0])
+        self.step_1_combobox_3.set(self.procedures_list_3_values[0])
+        self.step_1_combobox_4.set(self.procedures_list_4_values[0])
+        self.step_1_combobox_5.set(self.procedures_list_5_values[0])
+        self.step_1_combobox_6.set(self.procedures_list_6_values[0])
+        self.step_1_combobox_7.set(self.procedures_list_7_values[0])
+        self.step_1_combobox_8.set(self.procedures_list_8_values[0])
+        self.step_1_combobox_9.set(self.procedures_list_9_values[0])
+        self.step_1_count_procedures_1.set('')
+        self.step_1_count_procedures_2.set('')
+        self.step_1_count_procedures_3.set('')
+        self.step_1_count_procedures_4.set('')
+        self.step_1_count_procedures_5.set('')
+        self.step_1_count_procedures_6.set('')
+        self.step_1_count_procedures_7.set('')
+        self.step_1_count_procedures_8.set('')
+        self.step_1_count_procedures_9.set('')
         self.step_1_period_1.set(self.periods_list[0])
         self.step_1_period_2.set(self.periods_list[0])
         self.step_1_period_3.set(self.periods_list[0])
@@ -1135,24 +1140,24 @@ class MainWindow:
         self.step_1_period_9.set(self.periods_list[0])
         self.step_1_commentary.delete('0.0', customtkinter.END)
 
-        self.step_2_combobox_1.set(self.procedures_list[0])
-        self.step_2_combobox_2.set(self.procedures_list[0])
-        self.step_2_combobox_3.set(self.procedures_list[0])
-        self.step_2_combobox_4.set(self.procedures_list[0])
-        self.step_2_combobox_5.set(self.procedures_list[0])
-        self.step_2_combobox_6.set(self.procedures_list[0])
-        self.step_2_combobox_7.set(self.procedures_list[0])
-        self.step_2_combobox_8.set(self.procedures_list[0])
-        self.step_2_combobox_9.set(self.procedures_list[0])
-        self.step_2_count_procedures_1.set(1)
-        self.step_2_count_procedures_2.set(1)
-        self.step_2_count_procedures_3.set(1)
-        self.step_2_count_procedures_4.set(1)
-        self.step_2_count_procedures_5.set(1)
-        self.step_2_count_procedures_6.set(1)
-        self.step_2_count_procedures_7.set(1)
-        self.step_2_count_procedures_8.set(1)
-        self.step_2_count_procedures_9.set(1)
+        self.step_2_combobox_1.set(self.procedures_list_1_values[0])
+        self.step_2_combobox_2.set(self.procedures_list_2_values[0])
+        self.step_2_combobox_3.set(self.procedures_list_3_values[0])
+        self.step_2_combobox_4.set(self.procedures_list_4_values[0])
+        self.step_2_combobox_5.set(self.procedures_list_5_values[0])
+        self.step_2_combobox_6.set(self.procedures_list_6_values[0])
+        self.step_2_combobox_7.set(self.procedures_list_7_values[0])
+        self.step_2_combobox_8.set(self.procedures_list_8_values[0])
+        self.step_2_combobox_9.set(self.procedures_list_9_values[0])
+        self.step_2_count_procedures_1.set('')
+        self.step_2_count_procedures_2.set('')
+        self.step_2_count_procedures_3.set('')
+        self.step_2_count_procedures_4.set('')
+        self.step_2_count_procedures_5.set('')
+        self.step_2_count_procedures_6.set('')
+        self.step_2_count_procedures_7.set('')
+        self.step_2_count_procedures_8.set('')
+        self.step_2_count_procedures_9.set('')
         self.step_2_period_1.set(self.periods_list[0])
         self.step_2_period_2.set(self.periods_list[0])
         self.step_2_period_3.set(self.periods_list[0])
@@ -1164,24 +1169,24 @@ class MainWindow:
         self.step_2_period_9.set(self.periods_list[0])
         self.step_2_commentary.delete('0.0', customtkinter.END)
 
-        self.step_3_combobox_1.set(self.procedures_list[0])
-        self.step_3_combobox_2.set(self.procedures_list[0])
-        self.step_3_combobox_3.set(self.procedures_list[0])
-        self.step_3_combobox_4.set(self.procedures_list[0])
-        self.step_3_combobox_5.set(self.procedures_list[0])
-        self.step_3_combobox_6.set(self.procedures_list[0])
-        self.step_3_combobox_7.set(self.procedures_list[0])
-        self.step_3_combobox_8.set(self.procedures_list[0])
-        self.step_3_combobox_9.set(self.procedures_list[0])
-        self.step_3_count_procedures_1.set(1)
-        self.step_3_count_procedures_2.set(1)
-        self.step_3_count_procedures_3.set(1)
-        self.step_3_count_procedures_4.set(1)
-        self.step_3_count_procedures_5.set(1)
-        self.step_3_count_procedures_6.set(1)
-        self.step_3_count_procedures_7.set(1)
-        self.step_3_count_procedures_8.set(1)
-        self.step_3_count_procedures_9.set(1)
+        self.step_3_combobox_1.set(self.procedures_list_1_values[0])
+        self.step_3_combobox_2.set(self.procedures_list_2_values[0])
+        self.step_3_combobox_3.set(self.procedures_list_3_values[0])
+        self.step_3_combobox_4.set(self.procedures_list_4_values[0])
+        self.step_3_combobox_5.set(self.procedures_list_5_values[0])
+        self.step_3_combobox_6.set(self.procedures_list_6_values[0])
+        self.step_3_combobox_7.set(self.procedures_list_7_values[0])
+        self.step_3_combobox_8.set(self.procedures_list_8_values[0])
+        self.step_3_combobox_9.set(self.procedures_list_9_values[0])
+        self.step_3_count_procedures_1.set('')
+        self.step_3_count_procedures_2.set('')
+        self.step_3_count_procedures_3.set('')
+        self.step_3_count_procedures_4.set('')
+        self.step_3_count_procedures_5.set('')
+        self.step_3_count_procedures_6.set('')
+        self.step_3_count_procedures_7.set('')
+        self.step_3_count_procedures_8.set('')
+        self.step_3_count_procedures_9.set('')
         self.step_3_period_1.set(self.periods_list[0])
         self.step_3_period_2.set(self.periods_list[0])
         self.step_3_period_3.set(self.periods_list[0])
@@ -1215,5 +1220,5 @@ class MainWindow:
         self.df.to_excel('log.xlsx', index=False)
 
 
-data = Data()
-app_window = MainWindow(data)
+data_class = Data()
+app_window = MainWindow(data_class)
