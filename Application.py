@@ -1,12 +1,10 @@
-import functools
-
 import customtkinter
 import datetime
 from tkinter.filedialog import asksaveasfilename
-from blank_manager import BlankManager
-from pdf_generator import PdfGenerator
-from printer import LazyPrinter
 import pandas as pd
+from blank_manager import BlankManager
+from printer import LazyPrinter
+from pdf_generator import PdfGenerator
 
 
 class Data:
@@ -124,7 +122,7 @@ class MainWindow:
         self.app = customtkinter.CTk()
         self.app.title('World Class')
         self.data = data
-        self.blank_manager = BlankManager(PdfGenerator, data, LazyPrinter)
+        self.blank_manager = BlankManager(PdfGenerator, self.data, LazyPrinter)
         self.df = pd.read_excel('log.xlsx')
         self.fio_entry = None
         self.phone_entry = None
@@ -956,6 +954,10 @@ class MainWindow:
                                                          command=self.step_3_period_9_callback)
         self.step_3_period_9.grid(row=20, column=8, padx=20, pady=0)
 
+        step_3_label_period = customtkinter.CTkLabel(master=self.app, text='Комментарий', height=20)
+        step_3_label_period.grid(row=15, column=9, padx=20, pady=0)
+        self.step_3_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
+        self.step_3_commentary.grid(row=16, column=9, padx=20, pady=0, rowspan=5)
 
     def step_4(self) -> None:
         """
@@ -983,13 +985,13 @@ class MainWindow:
         self.logging()
         save_path_name = asksaveasfilename(initialfile=f'{self.data.fio}.pdf', defaultextension=".pdf",
                                            filetypes=[("All Files", "*.*"), ("PDF documents", "*.pdf")])
-        self.blank_manager.save_pdf(save_path_name)
+        if save_path_name:
+            self.blank_manager.save_pdf(save_path_name)
 
     def save_document(self) -> None:
         save_document_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
                                                        command=self.save_document_callback)
         save_document_button.grid(row=0, column=8, padx=20, pady=0)
-
 
     def print_document_callback(self) -> None:
         """

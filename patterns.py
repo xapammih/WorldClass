@@ -14,21 +14,7 @@ def generate_v1(patterns):
             'fontsize': 9
         },
 
-        'name': {
-            'max_len': 10,
-            'position': (67, 717.5),
-            'align': 'left',
-            'fontsize': 11
-        },
-
-        'surname': {
-            'max_len': 10,
-            'position': (67, 717.5),
-            'align': 'left',
-            'fontsize': 11
-        },
-
-        'fathername': {
+        'fio': {
             'max_len': 10,
             'position': (67, 717.5),
             'align': 'left',
@@ -56,8 +42,9 @@ def generate_v1(patterns):
             'fontsize': 14
         },
 
-        'for_better_effect': {
-            'max_len': 45,
+        'step_4_commentary': {
+            'font': 'RobotoMono',
+            'max_len': 44,
             'position': (319.7, 384),
             'align': 'left',
             'fontsize': 8,
@@ -67,9 +54,9 @@ def generate_v1(patterns):
     }
 
     items = {
-        'title': {'max_len': 10, 'position': (0, 0), 'align': 'left'},
-        'amount': {'max_len': 10, 'position': (158.1, 0), 'align': 'centred'},
-        'period': {'max_len': 10, 'position': (198, 0), 'align': 'centred'},
+        'procedure': {'max_len': 10, 'position': (0, 0), 'align': 'left'},
+        'count_procedures': {'max_len': 10, 'position': (158.1, 0), 'align': 'centred'},
+        'procedure_period': {'max_len': 10, 'position': (198, 0), 'align': 'centred'},
     }
 
     steps = [(52.2, 548.6), (319.7, 548.6), (52.2, 370)]
@@ -80,21 +67,117 @@ def generate_v1(patterns):
             items=items,
             n_rows=5,
             row_height=15.45,
-            row_name='procedure',
-            table_prefix=f'step_{i + 1}_'
+            row_name='',
+            table_prefix=f'step_{i + 1}'
         )
 
         step.update({
             f'step_{i + 1}_commentary': {'max_len': 10,
-                                     'position': (x, y - 92.7),
-                                     'align': 'left'}
-        })
+                                         'position': (x, y - 92.7),
+                                         'align': 'left'}
+            })
 
         options.update(step)
+
+    # print(step.keys())
 
     patterns['v1'] = {}
     patterns['v1']['options'] = options
     patterns['v1']['bg'] = 'blank_v1.pdf'
+
+
+def generate_v2(patterns):
+    options = {
+        'current_date': {
+            'max_len': 10,
+            'position': (368.7, 742),
+            'align': 'centred',
+            'fontsize': 8
+        },
+
+        'current_time': {
+            'max_len': 10,
+            'position': (450.4, 742),
+            'align': 'centred',
+            'fontsize': 8
+        },
+
+        'fio': {
+            'max_len': 10,
+            'position': (67, 728),
+            'align': 'left',
+            'fontsize': 10
+        },
+
+        'doctor': {
+            'max_len': 10,
+            'position': (422, 75),
+            'align': 'left',
+            'fontsize': 8
+        },
+
+        'phone': {
+            'max_len': 10,
+            'position': (87, 714.6),
+            'align': 'left',
+            'fontsize': 10
+        },
+
+        'wanted_result': {
+            'max_len': 10,
+            'position': (297, 683.7),
+            'align': 'centred',
+            'fontsize': 10
+        },
+
+        'step_4_commentary': {
+            'font': 'RobotoMono',
+            'max_len': 44,
+            'position': (324.2, 378.4),
+            'align': 'left',
+            'fontsize': 8,
+            'leading': 15.45,
+            'mode': 'text',
+            'max_text_rows': 12
+        }
+    }
+
+    items = {
+        'procedure': {'max_len': 10, 'position': (0, 0), 'align': 'left'},
+        'count_procedures': {'max_len': 10, 'position': (156.1, 0), 'align': 'centred'},
+        'procedure_period': {'max_len': 10, 'position': (199, 0), 'align': 'centred'},
+    }
+
+    steps = [(54.2, 593.6), (324.2, 593.6), (54.2, 363.4)]
+
+    for i, (x, y) in enumerate(steps):
+        step = create_str_table(
+            position=(x, y),
+            items=items,
+            n_rows=9,
+            row_height=15.45,
+            row_name='',
+            table_prefix=f'step_{i + 1}'
+        )
+
+        step.update({
+            f'step_{i + 1}_commentary': {'mode': 'text',
+                                         'font': 'RobotoMono',
+                                         'fontsize': 8,
+                                         'max_len': 44,
+                                         'position': (x, y - 138.7),
+                                         'leading': 15.45,
+                                         'align': 'left',
+                                         'max_text_rows': 2}
+            })
+
+        options.update(step)
+
+    # print(step.keys())
+
+    patterns['v2'] = {}
+    patterns['v2']['options'] = options
+    patterns['v2']['bg'] = 'blank_v2.pdf'
 
 
 def create_str_row(position, items):
@@ -121,3 +204,4 @@ def create_str_table(position, items, n_rows, row_height, row_name='row', table_
 
 PATTERNS = {}
 generate_v1(PATTERNS)
+generate_v2(PATTERNS)
