@@ -2,7 +2,6 @@ import win32api
 import datetime
 
 
-
 class LazyPrinter:
 
     def __init__(self):

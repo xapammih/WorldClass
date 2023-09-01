@@ -1211,7 +1211,7 @@ class MainWindow:
     def clear_all(self) -> None:
         clear_all_button = customtkinter.CTkButton(master=self.app, text='Очистить все',
                                                    command=self.clear_all_callback)
-        clear_all_button.grid(row=0, column=7, padx=20, pady=0)
+        clear_all_button.grid(row=0, column=6, padx=20, pady=0)
 
     def insert_logo(self) -> None:
         pass
@@ -1225,7 +1225,3 @@ class MainWindow:
         print(cur_data)
         self.df.loc[len(self.df.index)] = cur_data
         self.df.to_excel('log.xlsx', index=False)
-
-
-data_class = Data()
-app_window = MainWindow(data_class)

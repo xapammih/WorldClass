@@ -52,9 +52,7 @@ class PdfGenerator:
                                                        ('period' not in k) & \
                                                        (v not in step_blacklist)}
             sorted_proc_num = sorted(list(map(lambda s: int(s.split('_')[-1]), step.keys())))
-            print(sorted_proc_num)
             for j, n in enumerate(sorted_proc_num):
-                print(f'step_{i + 1}_procedure_{j + 1}', f'step_{i + 1}_procedure_{n}', inputs.get(f'step_{i + 1}_procedure_{n}', ''))
                 steps.update({f'step_{i + 1}_procedure_{j + 1}': inputs.get(f'step_{i + 1}_procedure_{n}', '')})
                 steps.update({f'step_{i + 1}_count_procedures_{j + 1}': inputs.get(f'step_{i + 1}_count_procedures_{n}', '')})
                 steps.update({f'step_{i + 1}_procedure_period_{j + 1}': inputs.get(f'step_{i + 1}_procedure_period_{n}', '')})
@@ -148,3 +146,4 @@ class PdfGenerator:
         output_stream = open(path, 'wb')
         self.output.write(output_stream)
         output_stream.close()
+
