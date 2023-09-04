@@ -127,6 +127,10 @@ class MainWindow:
         self.fio_entry = None
         self.phone_entry = None
         self.wanted_result_entry = None
+        self.frame = customtkinter.CTkScrollableFrame(self.app,
+                                                      width=self.app.winfo_screenwidth(),
+                                                      height=self.app.winfo_screenheight())
+        self.frame.pack()
 
         self.step_1_combobox_1 = None
         self.step_1_combobox_2 = None
@@ -293,12 +297,12 @@ class MainWindow:
         Получаем данные про ФИО пациента и телефон
         :return:
         """
-        fio_label = customtkinter.CTkLabel(master=self.app, text='Введите данные клиента: ')
+        fio_label = customtkinter.CTkLabel(master=self.frame, text='Введите данные клиента: ')
         fio_label.grid(row=1, column=0, padx=20, pady=20)
-        self.fio_entry = customtkinter.CTkEntry(master=self.app, placeholder_text="ФИО...")
+        self.fio_entry = customtkinter.CTkEntry(master=self.frame, placeholder_text="ФИО...")
         self.fio_entry.grid(row=1, column=1, padx=20, pady=20, columnspan=3, sticky="nsew")
 
-        self.phone_entry = customtkinter.CTkEntry(master=self.app, placeholder_text="Телефон...")
+        self.phone_entry = customtkinter.CTkEntry(master=self.frame, placeholder_text="Телефон...")
         self.phone_entry.grid(row=1, column=4, padx=20, pady=20)
 
     def doctor_combobox_callback(self, choise: str) -> None:
@@ -312,9 +316,9 @@ class MainWindow:
         with open('Administration/doctors.txt', 'r') as doctors_file:
             doctors = [i for i in doctors_file.readlines()]
         self.data.doctor = doctors[0]
-        step_1_label = customtkinter.CTkLabel(master=self.app, text='Выберите специалиста: ')
+        step_1_label = customtkinter.CTkLabel(master=self.frame, text='Выберите специалиста: ')
         step_1_label.grid(row=0, column=0, padx=20, pady=20)
-        doctor_combobox = customtkinter.CTkComboBox(self.app, values=doctors,
+        doctor_combobox = customtkinter.CTkComboBox(self.frame, values=doctors,
                                                     command=self.doctor_combobox_callback)
         doctor_combobox.grid(row=0, column=1, padx=20, pady=0, columnspan=2)
 
@@ -323,7 +327,7 @@ class MainWindow:
         Получаем данные о желаемом результате
         :return:
         """
-        self.wanted_result_entry = customtkinter.CTkEntry(master=self.app, width=350,
+        self.wanted_result_entry = customtkinter.CTkEntry(master=self.frame, width=350,
                                                           placeholder_text="Желаемый результат: ")
         self.wanted_result_entry.grid(row=2, column=0, padx=30, pady=20, columnspan=3, sticky="nsew")
 
@@ -414,128 +418,128 @@ class MainWindow:
         Собираем данные для шага 1(процедуры, кол-во процедур, период)
         :return:
         """
-        step_1_label = customtkinter.CTkLabel(master=self.app, font=('Arial', 16),
+        step_1_label = customtkinter.CTkLabel(master=self.frame, font=('Arial', 16),
                                               text='Шаг 1: ТОП решения и видимый результат')
         step_1_label.grid(row=3, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_1_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
+        self.step_1_combobox_1 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_1_values,
                                                            command=self.step_1_combobox_callback_1)
         self.step_1_combobox_1.grid(row=4, column=0, padx=20, pady=0)
 
-        self.step_1_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
+        self.step_1_combobox_2 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_2_values,
                                                            command=self.step_1_combobox_callback_2)
         self.step_1_combobox_2.grid(row=4, column=1, padx=20, pady=0)
 
-        self.step_1_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
+        self.step_1_combobox_3 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_3_values,
                                                            command=self.step_1_combobox_callback_3)
         self.step_1_combobox_3.grid(row=4, column=2, padx=20, pady=0)
 
-        self.step_1_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
+        self.step_1_combobox_4 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_4_values,
                                                            command=self.step_1_combobox_callback_4)
         self.step_1_combobox_4.grid(row=4, column=3, padx=20, pady=0)
 
-        self.step_1_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
+        self.step_1_combobox_5 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_5_values,
                                                            command=self.step_1_combobox_callback_5)
         self.step_1_combobox_5.grid(row=4, column=4, padx=20, pady=0)
 
-        self.step_1_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
+        self.step_1_combobox_6 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_6_values,
                                                            command=self.step_1_combobox_callback_6)
         self.step_1_combobox_6.grid(row=4, column=5, padx=20, pady=0)
 
-        self.step_1_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
+        self.step_1_combobox_7 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_7_values,
                                                            command=self.step_1_combobox_callback_7)
         self.step_1_combobox_7.grid(row=4, column=6, padx=20, pady=0)
 
-        self.step_1_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
+        self.step_1_combobox_8 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_8_values,
                                                            command=self.step_1_combobox_callback_8)
         self.step_1_combobox_8.grid(row=4, column=7, padx=20, pady=0)
 
-        self.step_1_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
+        self.step_1_combobox_9 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_9_values,
                                                            command=self.step_1_combobox_callback_9)
         self.step_1_combobox_9.grid(row=4, column=8, padx=20, pady=0)
 
-        step_1_label_procedures_count = customtkinter.CTkLabel(master=self.app, text='Кол-во процедур')
+        step_1_label_procedures_count = customtkinter.CTkLabel(master=self.frame, text='Кол-во процедур')
         step_1_label_procedures_count.grid(row=5, column=0, padx=20, pady=0)
 
-        self.step_1_count_procedures_1 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_1 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_1_callback)
         self.step_1_count_procedures_1.grid(row=6, column=0, padx=20, pady=0)
 
-        self.step_1_count_procedures_2 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_2 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_2_callback)
         self.step_1_count_procedures_2.grid(row=6, column=1, padx=20, pady=0)
 
-        self.step_1_count_procedures_3 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_3 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_3_callback)
         self.step_1_count_procedures_3.grid(row=6, column=2, padx=20, pady=0)
 
-        self.step_1_count_procedures_4 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_4 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_4_callback)
         self.step_1_count_procedures_4.grid(row=6, column=3, padx=20, pady=0)
 
-        self.step_1_count_procedures_5 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_5 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_5_callback)
         self.step_1_count_procedures_5.grid(row=6, column=4, padx=20, pady=0)
 
-        self.step_1_count_procedures_6 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_6 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_6_callback)
         self.step_1_count_procedures_6.grid(row=6, column=5, padx=20, pady=0)
 
-        self.step_1_count_procedures_7 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_7 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_7_callback)
         self.step_1_count_procedures_7.grid(row=6, column=6, padx=20, pady=0)
 
-        self.step_1_count_procedures_8 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_8 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_8_callback)
         self.step_1_count_procedures_8.grid(row=6, column=7, padx=20, pady=0)
 
-        self.step_1_count_procedures_9 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_1_count_procedures_9 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_1_count_procedures_9_callback)
         self.step_1_count_procedures_9.grid(row=6, column=8, padx=20, pady=0)
 
-        step_1_label_period = customtkinter.CTkLabel(master=self.app, text='Период')
+        step_1_label_period = customtkinter.CTkLabel(master=self.frame, text='Период')
         step_1_label_period.grid(row=7, column=0, padx=20, pady=0)
 
-        self.step_1_period_1 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_1 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_1_callback)
         self.step_1_period_1.grid(row=8, column=0, padx=20, pady=0)
 
-        self.step_1_period_2 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_2 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_2_callback)
         self.step_1_period_2.grid(row=8, column=1, padx=20, pady=0)
 
-        self.step_1_period_3 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_3 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_3_callback)
         self.step_1_period_3.grid(row=8, column=2, padx=20, pady=0)
 
-        self.step_1_period_4 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_4 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_4_callback)
         self.step_1_period_4.grid(row=8, column=3, padx=20, pady=0)
 
-        self.step_1_period_5 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_5 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_5_callback)
         self.step_1_period_5.grid(row=8, column=4, padx=20, pady=0)
 
-        self.step_1_period_6 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_6 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_6_callback)
         self.step_1_period_6.grid(row=8, column=5, padx=20, pady=0)
 
-        self.step_1_period_7 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_7 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_7_callback)
         self.step_1_period_7.grid(row=8, column=6, padx=20, pady=0)
 
-        self.step_1_period_8 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_8 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_8_callback)
         self.step_1_period_8.grid(row=8, column=7, padx=20, pady=0)
 
-        self.step_1_period_9 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_1_period_9 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_1_period_9_callback)
         self.step_1_period_9.grid(row=8, column=8, padx=20, pady=0)
 
-        step_1_label_period = customtkinter.CTkLabel(master=self.app, text='Комментарий', height=20)
+        step_1_label_period = customtkinter.CTkLabel(master=self.frame, text='Комментарий', height=20)
         step_1_label_period.grid(row=3, column=9, padx=20, pady=0)
 
-        self.step_1_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
+        self.step_1_commentary = customtkinter.CTkTextbox(master=self.frame, corner_radius=0)
         self.step_1_commentary.grid(row=4, column=9, padx=20, pady=0, rowspan=5)
 
     # колбэки для шага 2
@@ -625,127 +629,127 @@ class MainWindow:
         Собираем данные для шага 2(процедуры, кол-во процедур, период)
         :return:
         """
-        step_2_label = customtkinter.CTkLabel(master=self.app, font=('Arial', 16),
+        step_2_label = customtkinter.CTkLabel(master=self.frame, font=('Arial', 16),
                                               text='Шаг 2: Улучшение и закрепление результата')
         step_2_label.grid(row=9, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_2_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
+        self.step_2_combobox_1 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_1_values,
                                                            command=self.step_2_combobox_callback_1)
         self.step_2_combobox_1.grid(row=10, column=0, padx=20, pady=0)
 
-        self.step_2_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
+        self.step_2_combobox_2 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_2_values,
                                                            command=self.step_2_combobox_callback_2)
         self.step_2_combobox_2.grid(row=10, column=1, padx=20, pady=0)
 
-        self.step_2_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
+        self.step_2_combobox_3 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_3_values,
                                                            command=self.step_2_combobox_callback_3)
         self.step_2_combobox_3.grid(row=10, column=2, padx=20, pady=0)
 
-        self.step_2_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
+        self.step_2_combobox_4 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_4_values,
                                                            command=self.step_2_combobox_callback_4)
         self.step_2_combobox_4.grid(row=10, column=3, padx=20, pady=0)
 
-        self.step_2_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
+        self.step_2_combobox_5 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_5_values,
                                                            command=self.step_2_combobox_callback_5)
         self.step_2_combobox_5.grid(row=10, column=4, padx=20, pady=0)
 
-        self.step_2_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
+        self.step_2_combobox_6 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_6_values,
                                                            command=self.step_2_combobox_callback_6)
         self.step_2_combobox_6.grid(row=10, column=5, padx=20, pady=0)
 
-        self.step_2_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
+        self.step_2_combobox_7 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_7_values,
                                                            command=self.step_2_combobox_callback_7)
         self.step_2_combobox_7.grid(row=10, column=6, padx=20, pady=0)
 
-        self.step_2_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
+        self.step_2_combobox_8 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_8_values,
                                                            command=self.step_2_combobox_callback_8)
         self.step_2_combobox_8.grid(row=10, column=7, padx=20, pady=0)
 
-        self.step_2_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
+        self.step_2_combobox_9 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_9_values,
                                                            command=self.step_2_combobox_callback_9)
         self.step_2_combobox_9.grid(row=10, column=8, padx=20, pady=0)
 
-        step_2_label_procedures_count = customtkinter.CTkLabel(master=self.app, text='Кол-во процедур')
+        step_2_label_procedures_count = customtkinter.CTkLabel(master=self.frame, text='Кол-во процедур')
         step_2_label_procedures_count.grid(row=11, column=0, padx=20, pady=0)
 
-        self.step_2_count_procedures_1 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_1 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_1_callback)
         self.step_2_count_procedures_1.grid(row=12, column=0, padx=20, pady=0)
 
-        self.step_2_count_procedures_2 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_2 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_2_callback)
         self.step_2_count_procedures_2.grid(row=12, column=1, padx=20, pady=0)
 
-        self.step_2_count_procedures_3 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_3 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_3_callback)
         self.step_2_count_procedures_3.grid(row=12, column=2, padx=20, pady=0)
 
-        self.step_2_count_procedures_4 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_4 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_4_callback)
         self.step_2_count_procedures_4.grid(row=12, column=3, padx=20, pady=0)
 
-        self.step_2_count_procedures_5 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_5 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_5_callback)
         self.step_2_count_procedures_5.grid(row=12, column=4, padx=20, pady=0)
 
-        self.step_2_count_procedures_6 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_6 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_6_callback)
         self.step_2_count_procedures_6.grid(row=12, column=5, padx=20, pady=0)
 
-        self.step_2_count_procedures_7 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_7 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_7_callback)
         self.step_2_count_procedures_7.grid(row=12, column=6, padx=20, pady=0)
 
-        self.step_2_count_procedures_8 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_8 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_8_callback)
         self.step_2_count_procedures_8.grid(row=12, column=7, padx=20, pady=0)
 
-        self.step_2_count_procedures_9 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_2_count_procedures_9 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_2_count_procedures_9_callback)
         self.step_2_count_procedures_9.grid(row=12, column=8, padx=20, pady=0)
 
-        step_2_label_period = customtkinter.CTkLabel(master=self.app, text='Период')
+        step_2_label_period = customtkinter.CTkLabel(master=self.frame, text='Период')
         step_2_label_period.grid(row=13, column=0, padx=20, pady=0)
 
-        self.step_2_period_1 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_1 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_1_callback)
         self.step_2_period_1.grid(row=14, column=0, padx=20, pady=0)
 
-        self.step_2_period_2 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_2 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_2_callback)
         self.step_2_period_2.grid(row=14, column=1, padx=20, pady=0)
 
-        self.step_2_period_3 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_3 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_3_callback)
         self.step_2_period_3.grid(row=14, column=2, padx=20, pady=0)
 
-        self.step_2_period_4 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_4 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_4_callback)
         self.step_2_period_4.grid(row=14, column=3, padx=20, pady=0)
 
-        self.step_2_period_5 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_5 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_5_callback)
         self.step_2_period_5.grid(row=14, column=4, padx=20, pady=0)
 
-        self.step_2_period_6 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_6 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_6_callback)
         self.step_2_period_6.grid(row=14, column=5, padx=20, pady=0)
 
-        self.step_2_period_7 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_7 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_7_callback)
         self.step_2_period_7.grid(row=14, column=6, padx=20, pady=0)
 
-        self.step_2_period_8 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_8 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_8_callback)
         self.step_2_period_8.grid(row=14, column=7, padx=20, pady=0)
 
-        self.step_2_period_9 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_2_period_9 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_2_period_9_callback)
         self.step_2_period_9.grid(row=14, column=8, padx=20, pady=0)
 
-        step_2_label_period = customtkinter.CTkLabel(master=self.app, text='Комментарий', height=20)
+        step_2_label_period = customtkinter.CTkLabel(master=self.frame, text='Комментарий', height=20)
         step_2_label_period.grid(row=9, column=9, padx=20, pady=0)
-        self.step_2_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
+        self.step_2_commentary = customtkinter.CTkTextbox(master=self.frame, corner_radius=0)
         self.step_2_commentary.grid(row=10, column=9, padx=20, pady=0, rowspan=5)
 
     # колбэки для шага 3
@@ -836,127 +840,127 @@ class MainWindow:
         Собираем данные для шага 3(процедуры, кол-во процедур, период)
         :return:
         """
-        step_3_label = customtkinter.CTkLabel(master=self.app, font=('Arial', 16),
+        step_3_label = customtkinter.CTkLabel(master=self.frame, font=('Arial', 16),
                                               text='Шаг 3: Поддержка и совершенствование')
         step_3_label.grid(row=15, column=0, padx=0, pady=10, columnspan=2)
 
-        self.step_3_combobox_1 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_1_values,
+        self.step_3_combobox_1 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_1_values,
                                                            command=self.step_3_combobox_callback_1)
         self.step_3_combobox_1.grid(row=16, column=0, padx=20, pady=0)
 
-        self.step_3_combobox_2 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_2_values,
+        self.step_3_combobox_2 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_2_values,
                                                            command=self.step_3_combobox_callback_2)
         self.step_3_combobox_2.grid(row=16, column=1, padx=20, pady=0)
 
-        self.step_3_combobox_3 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_3_values,
+        self.step_3_combobox_3 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_3_values,
                                                            command=self.step_3_combobox_callback_3)
         self.step_3_combobox_3.grid(row=16, column=2, padx=20, pady=0)
 
-        self.step_3_combobox_4 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_4_values,
+        self.step_3_combobox_4 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_4_values,
                                                            command=self.step_3_combobox_callback_4)
         self.step_3_combobox_4.grid(row=16, column=3, padx=20, pady=0)
 
-        self.step_3_combobox_5 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_5_values,
+        self.step_3_combobox_5 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_5_values,
                                                            command=self.step_3_combobox_callback_5)
         self.step_3_combobox_5.grid(row=16, column=4, padx=20, pady=0)
 
-        self.step_3_combobox_6 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_6_values,
+        self.step_3_combobox_6 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_6_values,
                                                            command=self.step_3_combobox_callback_6)
         self.step_3_combobox_6.grid(row=16, column=5, padx=20, pady=0)
 
-        self.step_3_combobox_7 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_7_values,
+        self.step_3_combobox_7 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_7_values,
                                                            command=self.step_3_combobox_callback_7)
         self.step_3_combobox_7.grid(row=16, column=6, padx=20, pady=0)
 
-        self.step_3_combobox_8 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_8_values,
+        self.step_3_combobox_8 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_8_values,
                                                            command=self.step_3_combobox_callback_8)
         self.step_3_combobox_8.grid(row=16, column=7, padx=20, pady=0)
 
-        self.step_3_combobox_9 = customtkinter.CTkComboBox(self.app, values=self.procedures_list_9_values,
+        self.step_3_combobox_9 = customtkinter.CTkComboBox(self.frame, values=self.procedures_list_9_values,
                                                            command=self.step_3_combobox_callback_9)
         self.step_3_combobox_9.grid(row=16, column=8, padx=20, pady=0)
 
-        step_3_label_procedures_count = customtkinter.CTkLabel(master=self.app, text='Кол-во процедур')
+        step_3_label_procedures_count = customtkinter.CTkLabel(master=self.frame, text='Кол-во процедур')
         step_3_label_procedures_count.grid(row=17, column=0, padx=20, pady=0)
 
-        self.step_3_count_procedures_1 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_1 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_1_callback)
         self.step_3_count_procedures_1.grid(row=18, column=0, padx=20, pady=0)
 
-        self.step_3_count_procedures_2 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_2 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_2_callback)
         self.step_3_count_procedures_2.grid(row=18, column=1, padx=20, pady=0)
 
-        self.step_3_count_procedures_3 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_3 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_3_callback)
         self.step_3_count_procedures_3.grid(row=18, column=2, padx=20, pady=0)
 
-        self.step_3_count_procedures_4 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_4 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_4_callback)
         self.step_3_count_procedures_4.grid(row=18, column=3, padx=20, pady=0)
 
-        self.step_3_count_procedures_5 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_5 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_5_callback)
         self.step_3_count_procedures_5.grid(row=18, column=4, padx=20, pady=0)
 
-        self.step_3_count_procedures_6 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_6 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_6_callback)
         self.step_3_count_procedures_6.grid(row=18, column=5, padx=20, pady=0)
 
-        self.step_3_count_procedures_7 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_7 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_7_callback)
         self.step_3_count_procedures_7.grid(row=18, column=6, padx=20, pady=0)
 
-        self.step_3_count_procedures_8 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_8 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_8_callback)
         self.step_3_count_procedures_8.grid(row=18, column=7, padx=20, pady=0)
 
-        self.step_3_count_procedures_9 = customtkinter.CTkComboBox(self.app, values=self.procedure_count_lst,
+        self.step_3_count_procedures_9 = customtkinter.CTkComboBox(self.frame, values=self.procedure_count_lst,
                                                                    command=self.step_3_count_procedures_9_callback)
         self.step_3_count_procedures_9.grid(row=18, column=8, padx=20, pady=0)
 
-        step_3_label_period = customtkinter.CTkLabel(master=self.app, text='Период')
+        step_3_label_period = customtkinter.CTkLabel(master=self.frame, text='Период')
         step_3_label_period.grid(row=19, column=0, padx=20, pady=0)
 
-        self.step_3_period_1 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_1 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_1_callback)
         self.step_3_period_1.grid(row=20, column=0, padx=20, pady=0)
 
-        self.step_3_period_2 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_2 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_2_callback)
         self.step_3_period_2.grid(row=20, column=1, padx=20, pady=0)
 
-        self.step_3_period_3 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_3 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_3_callback)
         self.step_3_period_3.grid(row=20, column=2, padx=20, pady=0)
 
-        self.step_3_period_4 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_4 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_4_callback)
         self.step_3_period_4.grid(row=20, column=3, padx=20, pady=0)
 
-        self.step_3_period_5 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_5 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_5_callback)
         self.step_3_period_5.grid(row=20, column=4, padx=20, pady=0)
 
-        self.step_3_period_6 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_6 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_6_callback)
         self.step_3_period_6.grid(row=20, column=5, padx=20, pady=0)
 
-        self.step_3_period_7 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_7 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_7_callback)
         self.step_3_period_7.grid(row=20, column=6, padx=20, pady=0)
 
-        self.step_3_period_8 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_8 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_8_callback)
         self.step_3_period_8.grid(row=20, column=7, padx=20, pady=0)
 
-        self.step_3_period_9 = customtkinter.CTkComboBox(self.app, values=self.periods_list,
+        self.step_3_period_9 = customtkinter.CTkComboBox(self.frame, values=self.periods_list,
                                                          command=self.step_3_period_9_callback)
         self.step_3_period_9.grid(row=20, column=8, padx=20, pady=0)
 
-        step_3_label_period = customtkinter.CTkLabel(master=self.app, text='Комментарий', height=20)
+        step_3_label_period = customtkinter.CTkLabel(master=self.frame, text='Комментарий', height=20)
         step_3_label_period.grid(row=15, column=9, padx=20, pady=0)
-        self.step_3_commentary = customtkinter.CTkTextbox(master=self.app, corner_radius=0)
+        self.step_3_commentary = customtkinter.CTkTextbox(master=self.frame, corner_radius=0)
         self.step_3_commentary.grid(row=16, column=9, padx=20, pady=0, rowspan=5)
 
     def step_4(self) -> None:
@@ -964,7 +968,7 @@ class MainWindow:
         Собираем данные для шага 4(улучшение эффекта)
         :return:
         """
-        self.step_4_commentary = customtkinter.CTkEntry(master=self.app, placeholder_text="Для улучшения эффекта...")
+        self.step_4_commentary = customtkinter.CTkEntry(master=self.frame, placeholder_text="Для улучшения эффекта...")
         self.step_4_commentary.grid(row=21, column=0, padx=30, pady=20, columnspan=8, sticky="nsew")
 
     def save_document_callback(self) -> None:
@@ -989,7 +993,7 @@ class MainWindow:
             self.blank_manager.save_pdf(save_path_name)
 
     def save_document(self) -> None:
-        save_document_button = customtkinter.CTkButton(master=self.app, text='Сохранить PDF файл',
+        save_document_button = customtkinter.CTkButton(master=self.frame, text='Сохранить PDF файл',
                                                        command=self.save_document_callback)
         save_document_button.grid(row=0, column=8, padx=20, pady=0)
 
@@ -1012,7 +1016,7 @@ class MainWindow:
         self.logging()
 
     def print_document(self) -> None:
-        print_document_button = customtkinter.CTkButton(master=self.app, text='Распечатать',
+        print_document_button = customtkinter.CTkButton(master=self.frame, text='Распечатать',
                                                         command=self.print_document_callback)
         print_document_button.grid(row=0, column=9, padx=20, pady=0)
 
@@ -1209,7 +1213,7 @@ class MainWindow:
         self.step_4_commentary.delete('0', customtkinter.END)
 
     def clear_all(self) -> None:
-        clear_all_button = customtkinter.CTkButton(master=self.app, text='Очистить все',
+        clear_all_button = customtkinter.CTkButton(master=self.frame, text='Очистить все',
                                                    command=self.clear_all_callback)
         clear_all_button.grid(row=0, column=7, padx=20, pady=0)
 
@@ -1225,7 +1229,3 @@ class MainWindow:
         print(cur_data)
         self.df.loc[len(self.df.index)] = cur_data
         self.df.to_excel('log.xlsx', index=False)
-
-
-data_class = Data()
-app_window = MainWindow(data_class)
