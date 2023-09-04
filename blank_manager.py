@@ -10,3 +10,4 @@ class BlankManager:
     def print_pdf(self):
         self.pdf_generator.save_pdf(r'.\data\lastblank.pdf')
         self.printer.print_file(r'.\data\lastblank.pdf')
+
