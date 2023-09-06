@@ -1,13 +1,8 @@
-import sys
-
 import customtkinter
 from Application import MainWindow, Data
-import datetime
-
 
 data = Data()
-app_window = MainWindow(data)
-
+app_window = MainWindow(data=data)
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 
@@ -28,4 +23,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
